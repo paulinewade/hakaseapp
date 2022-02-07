@@ -34,6 +34,19 @@ jobs:
       with:
         ruby-version: ${{ env.RUBY_VERSION }}
         bundler-cache: true
+    - name: Setup DB
+      env:
+        # REDIS_URL: redis://localhost:6379/0
+        # PGHOST: localhost
+        # PGUSER: hakase_dev
+        # PGPASSWORD: hakasepass
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rails db:setup RAILS_ENV=test
+        bundle exec rake db:migrate RAILS_ENV=test
+
     - uses: borales/actions-yarn@v2.3.0
       with:
         cmd: install
@@ -43,22 +56,10 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
 
-    - name: Setup DB
-      env:
-        REDIS_URL: redis://localhost:6379/0
-        PGHOST: localhost
-        PGUSER: hakase_dev
-        PGPASSWORD: hakasepass
-        # PGUSER: postgres
-        # PGPASSWORD: postgres
-        RAILS_ENV: test
-      run: |
-        bundle exec rails db:setup RAILS_ENV=test
-        bundle exec rake db:migrate RAILS_ENV=test
 
     - name: Run Tests
       env:
-        PGHOST: localhost
+#        PGHOST: localhost
         PGUSER: postgres
         PGPASSWORD: postgres
         RAILS_ENV: test

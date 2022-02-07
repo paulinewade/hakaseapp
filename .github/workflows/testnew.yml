@@ -51,7 +51,7 @@ jobs:
         run: brakeman -o brakeman.txt
 
       - name: Run rubocop
-        run: rubocop
+        run: rubocop -o rubocop.txt
 
       - name: Upload coverage results
         uses: actions/upload-artifact@master

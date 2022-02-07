@@ -47,8 +47,10 @@ jobs:
       env:
         REDIS_URL: redis://localhost:6379/0
         PGHOST: localhost
-        PGUSER: postgres
-        PGPASSWORD: postgres
+        PGUSER: hakase_dev
+        PGPASSWORD: hakasepass
+        # PGUSER: postgres
+        # PGPASSWORD: postgres
         RAILS_ENV: test
       run: |
         bundle exec rails db:setup RAILS_ENV=test

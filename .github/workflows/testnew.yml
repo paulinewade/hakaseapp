@@ -50,14 +50,27 @@ jobs:
       - name: Run brakeman
         run: brakeman -o brakeman.txt
 
-      - name: Run rubocop
-        run: |
-          gem install rubocop
-          rubocop
-      #    rubocop -o rubocop.txt
+      # - name: Run rubocop
+      #   run: |
+      #     gem install rubocop
+      #     rubocop
 
       # - name: Run rubocop
       #   run: rubocop -o rubocop.txt
+
+  rubocop-test:
+      name: Rubocop
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: ${{ env.RUBY_VERSION }}
+            bundler-cache: true
+        - name: Install Rubocop & Check code
+          run: |
+            gem install rubocop
+            rubocop
 
 
       - name: Upload coverage results

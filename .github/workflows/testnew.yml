@@ -51,10 +51,13 @@ jobs:
         run: brakeman -o brakeman.txt
 
       - name: Run rubocop
-        run: bundler exec rubocop --out rubocop.txt
+        run: |
+        gem install rubocop
+        bundler exec rubocop --out rubocop.txt
 
       # - name: Run rubocop
       #   run: rubocop -o rubocop.txt
+
 
       - name: Upload coverage results
         uses: actions/upload-artifact@master

@@ -38,12 +38,12 @@ jobs:
           cmd: install
       - name: Run tests
         run: bundler exec rspec .
-      - name: Run brakeman
-        run: brakeman -o brakeman.txt
-      - name: Install Rubocop & Check code
-        run: |
-          gem install rubocop
-          rubocop -o rubocop.txt
+      # - name: Run brakeman
+      #   run: brakeman -o brakeman.txt
+      # - name: Install Rubocop & Check code
+      #   run: |
+      #     gem install rubocop
+      #     rubocop -o rubocop.txt
       # - name: Upload coverage results
       #   uses: actions/upload-artifact@master
       #   if: always()

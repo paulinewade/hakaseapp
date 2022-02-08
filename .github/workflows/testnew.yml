@@ -52,8 +52,8 @@ jobs:
 
       - name: Run rubocop
         run: |
-        gem install rubocop
-        bundler exec rubocop --out rubocop.txt
+          gem install rubocop
+          bundler exec rubocop --out rubocop.txt
 
       # - name: Run rubocop
       #   run: rubocop -o rubocop.txt
